@@ -1,0 +1,10 @@
+ion-header-bar.bar-dark
+  img.app-icon(src='img/icon.png')
+  h1.title Madness Valentine
+  i.button.button-icon.icon.ion-help-circled(ng-click='ctrl.openHelp()')
+ion-content.state-map(scroll="false")
+  #map(data-tap-disabled='true')
+ion-footer-bar.bar-dark
+  a.button.button-icon.icon.ion-android-locate(ng-click='ctrl.centerOnMe()')
+  a.button.button-icon.icon.ion-navicon-round(ng-click='ctrl.openQuest()')
+script(src='http://maps.googleapis.com/maps/api/js?key=AIzaSyC-G2M9TU6wVyrmmm6dkHO60R9gMc1Td80&sensor=true')
