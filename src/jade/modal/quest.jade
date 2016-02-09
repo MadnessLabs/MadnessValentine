@@ -1,14 +1,11 @@
 ion-modal-view
   ion-header-bar
-    h1.title Quest Log
+    h1.title {{ctrl.spot.name}}
     i.button.button-icon.icon.ion-close-round.icon-right(ng-click='ctrl.closeQuest()')
   ion-content.quest-modal
     .wrapper
-      br
-      h3(align='center') {{ctrl.spot.name}}
-      br
       p(align='center') {{ctrl.spot.hint}}
       br
       br
-      button.button.button-energized.button-full.icon-right.ion-map(ng-click='ctrl.travel()')
-        | Travel
+      input(ng-model='ctrl.guess')
+      button.button.button-energized.button-full.icon-right.ion-question(ng-click='ctrl.travel()') Guess

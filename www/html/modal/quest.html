@@ -1,13 +1,13 @@
 
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Quest Log</h1><i ng-click="ctrl.closeQuest()" class="button button-icon icon ion-close-round icon-right"></i>
+    <h1 class="title">{{ctrl.spot.name}}</h1><i ng-click="ctrl.closeQuest()" class="button button-icon icon ion-close-round icon-right"></i>
   </ion-header-bar>
   <ion-content class="quest-modal">
-    <div class="wrapper"><br/>
-      <h3 align="center">{{ctrl.spot.name}}</h3><br/>
+    <div class="wrapper">
       <p align="center">{{ctrl.spot.hint}}</p><br/><br/>
-      <button ng-click="ctrl.travel()" class="button button-energized button-full icon-right ion-map">Travel</button>
+      <input ng-model="ctrl.guess"/>
+      <button ng-click="ctrl.travel()" class="button button-energized button-full icon-right ion-question">Guess</button>
     </div>
   </ion-content>
 </ion-modal-view>
