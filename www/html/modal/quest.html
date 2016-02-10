@@ -1,13 +1,17 @@
 
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">{{ctrl.spot.name}}</h1><i ng-click="ctrl.closeQuest()" class="button button-icon icon ion-close-round icon-right"></i>
+    <h1 class="title">Quest-ination {{ctrl.currentSpot + 1}}</h1><i ng-click="ctrl.closeQuest()" class="button button-icon icon ion-close-round icon-right"></i>
   </ion-header-bar>
   <ion-content class="quest-modal">
-    <div class="wrapper">
-      <p align="center">{{ctrl.spot.hint}}</p><br/><br/>
-      <input ng-model="ctrl.guess"/>
-      <button ng-click="ctrl.travel()" class="button button-energized button-full icon-right ion-question">Guess</button>
+    <div class="card">
+      <div class="item item-divider">{{ctrl.spot.name}}</div>
+      <div ng-class="[{&quot;correct&quot;:ctrl.correct, &quot;wrong&quot;: !ctrl.correct, &quot;show&quot;: ctrl.answered, &quot;hide&quot;: !ctrl.answered}]" class="item item-text-wrap feedback">{{ctrl.feedback}}</div>
+      <div class="item item-text-wrap">{{ctrl.spot.hint}}</div>
+      <label class="item item-input"><i class="icon ion-lightbulb placeholder-icon"></i>
+        <input type="text" placeholder="Guess" ng-model="ctrl.guess"/>
+      </label>
     </div>
+    <button ng-click="ctrl.submitGuess()" ng-disabled="ctrl.answered &amp;&amp; ctrl.correct" class="button button-calm button-full icon-right ion-android-send">Submit</button>
   </ion-content>
 </ion-modal-view>

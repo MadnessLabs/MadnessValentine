@@ -5,5 +5,5 @@
 <ion-content scroll="false" class="state-map">
   <div id="map" data-tap-disabled="true"></div>
 </ion-content>
-<ion-footer-bar class="bar-dark"><a ng-click="ctrl.centerOnMe()" class="button button-icon icon ion-android-locate"></a><a ng-click="ctrl.openQuest()" class="button button-icon icon ion-navicon-round"></a></ion-footer-bar>
+<ion-footer-bar class="bar-dark"><a ng-click="ctrl.centerOnMe()" class="button button-icon icon ion-android-locate"></a><a ng-click="ctrl.openQuest()" ng-hide="ctrl.gameOver" class="button button-icon icon ion-map"></a></ion-footer-bar>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC-G2M9TU6wVyrmmm6dkHO60R9gMc1Td80&amp;sensor=true"></script>

@@ -13,6 +13,12 @@ module MadnessValentine {
         currentSpot: any;
         spot: any;
         map: any;
+        guess: string;
+        answered: boolean;
+        correct: boolean;
+        feedback: string;
+        gameOver: boolean;
+        questLength: number;
 
         constructor(
             protected Rest,
@@ -29,6 +35,9 @@ module MadnessValentine {
             this.myLatlng = '';
             this.currentSpot = 0;
             this.spot = this.destinations.get(this.currentSpot);
+            this.gameOver = false;
+
+            this.questLength = this.destinations.all().length;
 
             this.$ionicModal.fromTemplateUrl('html/modal/quest.html', {
                 scope: $scope,
@@ -103,10 +112,13 @@ module MadnessValentine {
 
         openQuest() {
             this.questModal.show();
+            this.answered = false;
+            this.guess = '';
         }
 
         closeQuest() {
             this.questModal.hide();
+            this.answered = false;
         }
 
         openHelp() {
@@ -118,13 +130,27 @@ module MadnessValentine {
         }
 
         travel() {
-            this.markMe(this.spot.lat, this.spot.lng);
             this.closeQuest();
             this.currentSpot++;
             this.spot = this.destinations.get(this.currentSpot);
 
-            if (this.currentSpot === 6) {
-                angular.element(document.getElementsByClassName('ion-navicon-round')).hide();
+            if (this.currentSpot === this.questLength) {
+                this.gameOver = true;
+            }
+        }
+
+        submitGuess() {
+            this.answered = true;
+            if (this.guess.toLowerCase() === this.spot.answer.toLowerCase()) {
+                this.correct = true;
+                this.feedback = 'Correct! Proceed to quest-ination...';
+                this.markMe(this.spot.lat, this.spot.lng);
+                setTimeout(function(){
+                    this.travel();
+                }.bind(this), 5000);
+            } else {
+                this.feedback = 'Hint: ' + this.spot.wrong;
+                this.correct = false;
             }
         }
     }

@@ -68990,6 +68990,8 @@ var MadnessValentine;
             this.myLatlng = '';
             this.currentSpot = 0;
             this.spot = this.destinations.get(this.currentSpot);
+            this.gameOver = false;
+            this.questLength = this.destinations.all().length;
             this.$ionicModal.fromTemplateUrl('html/modal/quest.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
@@ -69044,9 +69046,12 @@ var MadnessValentine;
         };
         MapController.prototype.openQuest = function () {
             this.questModal.show();
+            this.answered = false;
+            this.guess = '';
         };
         MapController.prototype.closeQuest = function () {
             this.questModal.hide();
+            this.answered = false;
         };
         MapController.prototype.openHelp = function () {
             this.helpModal.show();
@@ -69055,12 +69060,26 @@ var MadnessValentine;
             this.helpModal.hide();
         };
         MapController.prototype.travel = function () {
-            this.markMe(this.spot.lat, this.spot.lng);
             this.closeQuest();
             this.currentSpot++;
             this.spot = this.destinations.get(this.currentSpot);
-            if (this.currentSpot === 6) {
-                angular.element(document.getElementsByClassName('ion-navicon-round')).hide();
+            if (this.currentSpot === this.questLength) {
+                this.gameOver = true;
+            }
+        };
+        MapController.prototype.submitGuess = function () {
+            this.answered = true;
+            if (this.guess.toLowerCase() === this.spot.answer.toLowerCase()) {
+                this.correct = true;
+                this.feedback = 'Correct! Proceed to quest-ination...';
+                this.markMe(this.spot.lat, this.spot.lng);
+                setTimeout(function () {
+                    this.travel();
+                }.bind(this), 5000);
+            }
+            else {
+                this.feedback = 'Hint: ' + this.spot.wrong;
+                this.correct = false;
             }
         };
         return MapController;
@@ -69108,10 +69127,19 @@ var MadnessValentine;
             this.destinations = [
                 {
                     name: 'Luscious Blossoms',
-                    hint: 'Though it\'s not the typical arrangement it says I love you berry much.',
-                    answer: 'Edible Arrangements',
+                    hint: "It's not the typical arrangement or even \n\t\t\t\t\tthe right plant, but it still says I love you berry much!",
+                    answer: 'edible arrangements',
+                    wrong: 'Bouquets aren\'t usually edible',
                     lat: 38.437956,
                     lng: -90.382641
+                },
+                {
+                    name: 'Dinner Dilema',
+                    hint: "Everything is bigger here, whether it's\n\t\t\t\t\t the portions or the atmosphere.  This is one of \n\t\t\t\t\t your favorite fancy dining establishments, \n\t\t\t\t\t now hurry up and figire it out dinners at steak!",
+                    answer: 'texas roadhouse',
+                    wrong: 'Hank has one on the road to his house',
+                    lat: 38.4394528,
+                    lng: -90.3820103
                 }
             ];
         }

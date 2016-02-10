@@ -1,11 +1,13 @@
 ion-modal-view
   ion-header-bar
-    h1.title {{ctrl.spot.name}}
+    h1.title Quest-ination {{ctrl.currentSpot + 1}}
     i.button.button-icon.icon.ion-close-round.icon-right(ng-click='ctrl.closeQuest()')
   ion-content.quest-modal
-    .wrapper
-      p(align='center') {{ctrl.spot.hint}}
-      br
-      br
-      input(ng-model='ctrl.guess')
-      button.button.button-energized.button-full.icon-right.ion-question(ng-click='ctrl.travel()') Guess
+    .card
+      .item.item-divider {{ctrl.spot.name}}
+      .item.item-text-wrap.feedback(ng-class='[{"correct":ctrl.correct, "wrong": !ctrl.correct, "show": ctrl.answered, "hide": !ctrl.answered}]'){{ctrl.feedback}}
+      .item.item-text-wrap {{ctrl.spot.hint}}
+      label.item.item-input
+        i.icon.ion-lightbulb.placeholder-icon
+        input(type="text" placeholder="Guess" ng-model="ctrl.guess")
+    button.button.button-calm.button-full.icon-right.ion-android-send(ng-click='ctrl.submitGuess()' ng-disabled="ctrl.answered && ctrl.correct") Submit

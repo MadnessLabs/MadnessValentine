@@ -410,19 +410,20 @@ gulp.task('css-concat', function(){
 });
 
 gulp.task('css-lint', function(){
-    var errorCount   = 0,
-        errorMessage = [];
-        global.isError = false;
-    return gulp.src(cssWatch)
-        .pipe(cache('css-lint'))
-        .pipe(sassLint())
-        .on('error', onError)
-        .pipe(sassLint.format())
-        .on('end', function(){
-            if(!global.isError){
-                runSequence('css-compile', 'css-concat');    
-            }
-        });
+    runSequence('css-compile', 'css-concat');
+    // var errorCount   = 0,
+    //     errorMessage = [];
+    //     global.isError = false;
+    // return gulp.src(cssWatch)
+    //     .pipe(cache('css-lint'))
+    //     .pipe(sassLint())
+    //     .on('error', onError)
+    //     .pipe(sassLint.format())
+    //     .on('end', function(){
+    //         if(!global.isError){
+    //             runSequence('css-compile', 'css-concat');    
+    //         }
+    //     });
 });
 
 gulp.task('css-minify', function(){
