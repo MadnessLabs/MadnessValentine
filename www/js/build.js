@@ -69134,12 +69134,36 @@ var MadnessValentine;
                     lng: -90.382641
                 },
                 {
+                    name: 'Dress to Impress',
+                    hint: "Cinderella didn't have this store to shop at, but\n\t\t\t\t\tyou always have a ball shopping here.",
+                    answer: 'kohls',
+                    wrong: 'A friend could get us a discount',
+                    lat: 38.437975,
+                    lng: -90.3797349
+                },
+                {
                     name: 'Dinner Dilema',
                     hint: "Everything is bigger here, whether it's\n\t\t\t\t\t the portions or the atmosphere.  This is one of \n\t\t\t\t\t your favorite fancy dining establishments, \n\t\t\t\t\t now hurry up and figire it out dinners at steak!",
                     answer: 'texas roadhouse',
                     wrong: 'Hank has one on the road to his house',
                     lat: 38.4394528,
                     lng: -90.3820103
+                },
+                {
+                    name: 'Dessert Anyone?',
+                    hint: "This is a new favorite recommended by an artist",
+                    answer: 'hot box cookies',
+                    wrong: 'Named after a stoner activity',
+                    lat: 38.6405936,
+                    lng: -90.2622758
+                },
+                {
+                    name: 'There\'s no place like...',
+                    hint: "All good things must come to an end even a\n\t\t\t\t\tValentine's Day quest game.  I hope you had fun\n\t\t\t\t\texploring Arnold and look forward to our ever-bright future. \n\t\t\t\t\tNow it's time to click those heels so we can curl up and \n\t\t\t\t\twatch a movie I have selected for us. I love you darling! <3",
+                    answer: 'home',
+                    wrong: 'Really?!??!??!',
+                    lat: 38.4406856,
+                    lng: -90.3695122
                 }
             ];
         }
